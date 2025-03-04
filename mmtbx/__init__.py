@@ -305,12 +305,7 @@ class fmodels(object):
         if(compute_gradients):
           # XXX discamb
           if self.fmodels.fmodel_xray().is_taam():
-            f0 = self.fmodels.fmodel_xray().xray_structure.scatterers()[0].flags
-            gs = tfx_r.gradients_wrt_atomic_parameters()
-            if   f0.grad_site():
-              sf = flex.vec3_double([g.site_derivatives for g in gs]).as_double()
-            elif f0.grad_u_iso():
-              sf = flex.double([g.adp_derivatives[0] for g in gs])
+            sf = tfx_r.gradients_wrt_atomic_parameters()
           # XXX discamb
           else:
             if(occupancy):
